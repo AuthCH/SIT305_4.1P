@@ -1,5 +1,7 @@
 package com.example.workouttimer;
 
+import static java.lang.Integer.parseInt;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -22,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
     Button set;
     boolean running;
     long timeleft = Starttime;
+    ProgressBar progressBar;
+    String inputnumber;
+    int Max;
+    int i = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +41,18 @@ public class MainActivity extends AppCompatActivity {
         reset = findViewById(R.id.resetbutton);
         input = findViewById(R.id.inputtime);
         set = findViewById(R.id.set);
+        progressBar = findViewById(R.id.progressBar2);
+
         set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String inputtime = input.getText().toString();
                 long timeinput = Long.parseLong(inputtime) * 60000;
                 settime(timeinput);
+                inputnumber = input.getText().toString();
+                Max = Integer.parseInt(inputnumber) * 60;
+                progressBar.setMax(Max);
+                progressBar.setProgress(i);
                 input.setText("");
             }
         });
@@ -55,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     starttimer();
+
                 }
             }
 
@@ -63,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 resettimer();
             }
         });
@@ -73,8 +89,12 @@ public class MainActivity extends AppCompatActivity {
         countdown = new CountDownTimer(timeleft,1000) {
             @Override
             public void onTick(long milliUtilFinised) {
+
                 timeleft = milliUtilFinised;
                 update();
+                int time = parseInt(String.valueOf(timeleft));
+                i++;
+                progressBar.setProgress((int) i);
             }
 
             @Override
@@ -83,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 startpause.setText("Start");
                 startpause.setVisibility(View.INVISIBLE);
                 reset.setVisibility(View.VISIBLE);
+                i = 0;
 
             }
         }.start();
@@ -106,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         update();
         reset.setVisibility(View.INVISIBLE);
         startpause.setVisibility(View.VISIBLE);
+        i = 0;
     }
     private void update(){
         int min = (int) (timeleft / 1000) / 60;
@@ -121,4 +143,6 @@ public class MainActivity extends AppCompatActivity {
         Starttime = milliseconds;
         resettimer();
     }
+
+
 }
