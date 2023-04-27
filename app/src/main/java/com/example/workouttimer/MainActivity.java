@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
     private void update(){
         //Find a minute by divide timeleft/1000 with 60
         int min = (int) (timeleft / 1000) / 60;
-        //Find a second by divide timeleft/1000 with 60 and get only number after dot
+        //Find a second by divide timeleft/1000 with 60 and get modulo
         // (sorry I don't know what it call in english)
         int sec = (int) (timeleft / 1000) % 60;
         //Set format and store in timeleftformat
@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
     private void restupdate(){
         //Find a minute by divide timeleft/1000 with 60
         int restmin = (int) (resttimeleft / 1000) / 60;
-        //Find a second by divide timeleft/1000 with 60 and get only number after dot
+        //Find a second by divide timeleft/1000 with 60 and get modulo
         // (sorry I don't know what it call in english)
         int restsec = (int) (resttimeleft / 1000) % 60;
         //Set format and store in resttimeleftformat
