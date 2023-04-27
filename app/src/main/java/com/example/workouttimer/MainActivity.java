@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
         //Find a minute by divide timeleft/1000 with 60
         int min = (int) (timeleft / 1000) / 60;
         //Find a second by divide timeleft/1000 with 60 and get modulo
-        // (sorry I don't know what it call in english)
+        // (sorry I'm not sure what is it call in english)
         int sec = (int) (timeleft / 1000) % 60;
         //Set format and store in timeleftformat
         String timeleftformat = String.format(Locale.getDefault(),"%02d:%02d", min,sec);
@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
         //Find a minute by divide timeleft/1000 with 60
         int restmin = (int) (resttimeleft / 1000) / 60;
         //Find a second by divide timeleft/1000 with 60 and get modulo
-        // (sorry I don't know what it call in english)
+        // (sorry I'm not sure what is it call in english)
         int restsec = (int) (resttimeleft / 1000) % 60;
         //Set format and store in resttimeleftformat
         String resttimeleftformat = String.format(Locale.getDefault(),"%02d:%02d", restmin,restsec);
